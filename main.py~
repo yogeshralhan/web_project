@@ -4,7 +4,7 @@ import flask
 from flask import Flask
 from flask import render_template
 from flask import request
-#from db2 import *
+from db2 import *
 
 app= Flask(__name__)
 
@@ -20,12 +20,12 @@ def register():
 		return render_template('register.html')
 	else:
 
-	        name=request.form['Name']
-	        email=request.form['Email']
-	        password=request.form['Password']
-	        confirm=request.form['Confirm_Password']
+        name=request.form['Name']
+        email=request.form['Email']
+        password=request.form['Password']
+        confirm=request.form['Confirm_Password']
 
-
+f=first
 
 if __name__ == '__main__':
 	app.run(debug=True)
