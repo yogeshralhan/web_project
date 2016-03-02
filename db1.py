@@ -6,8 +6,14 @@ connect('mylog2')
 class registration(Document):
     name_db=StringField(required=True)
     email_db=EmailField(required=True)
-    password_db=StringField(required='')
-    confirm_password=StringField()
+    password_db=StringField(required=True)
+    confirm_password=StringField(required="")
+    
+
+    #hash = pbkdf2_sha256.encrypt("password", rounds=200000, salt_size=16)  # to encryypt password
+
+	#pbkdf2_sha256.verify("password", hash)    # to verify password
+
 
 
 
