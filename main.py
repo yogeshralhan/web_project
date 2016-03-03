@@ -14,16 +14,17 @@ from db1 import *
 from flask.ext.login import LoginManager,login_required,current_user,logout_user
 import flask.ext.login as flask_login
  
-app= Flask(__name__)
+app= Flask(__name__,static_folder="/home/yogesh/web_project/Static")
+#print dir(app)
 app.config['SECRET_KEY']='hard to guess'
 #app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 #First Page (register-login)
-
+#app = Flask(static_folder="/home/yogesh/web_project")
 login_manager=LoginManager()
 login_manager.init_app(app)
 
 
-'''@login_manager.user_loader
+@login_manager.user_loader
 
 def user_loader(email1):
 	try:
@@ -38,7 +39,7 @@ def user_loader(email1):
 
 
 class User(flask_login.UserMixin):
-    pass'''
+	pass
 
 @app.route('/first')
 
@@ -55,21 +56,20 @@ def register():
 		return render_template('register.html')
 	
 	else:
+		name=request.form['Name']
+		email=request.form['Email']
+		password=request.form['Password']
+		confirm=request.form['Confirm_Password']
+		
+	try:
 
-			name=request.form['Name']
-			email=request.form['Email']
-			password=request.form['Password']
-			confirm=request.form['Confirm_Password']
-			
-	try :
-
-		if (registration.objects.get(email_db=email)):
+		if(registration.objects.get(email_db=email)):
 			flash(" email already exists ")
 			return redirect(url_for('register'))
 	
 	except DoesNotExist:
 	
-		if (password==confirm):
+		if(password==confirm):
 			reg=registration(name_db=name,email_db=email,password_db=password).save()
 			flash("Registration Successful !")
 			return redirect(url_for('login'))
@@ -109,7 +109,7 @@ def login():
 						# user = User()
 						# user.id = email1
 						# flask_login.login_user(user)
-						 return render_template('user_page1.html')
+						return render_template('user_page2.html')
 				except DoesNotExist:
 					flash("TRY AGAIN")
 					return redirect(url_for('login'))
@@ -124,6 +124,10 @@ def login():
 		flash("email not registered please do the registration")
 
  		return redirect(url_for('first'))
+
+
+
+@app.route('/')
 
 
 
