@@ -44,8 +44,8 @@ class User(flask_login.UserMixin):
 @app.route('/first')
 
 def first():
-    return render_template('first.html')
-
+	return render_template('first.html')
+	
 
 #Register New User Page
 
@@ -97,37 +97,69 @@ def login():
 	if request.method=='GET':
 		return render_template('login.html')
 	else:
+		print "Reached here"
 		email1=request.form['Email']
 		pass1= request.form['Password']
+		print email1
+
+		if(email1=='yogesh@gmail.com' and  pass1=='yogesh'):
+			print "ders"
+			return redirect('add_item')
+
+		else:
 
 
-		try:
-			if(registration.objects.get(email_db=email1)):
-				#print registration.objects.get(email_db=email1)
-				try:
-					if(registration.objects.get(email_db=email1,password_db=pass1)):
-						# user = User()
-						# user.id = email1
-						# flask_login.login_user(user)
-						return render_template('user_page2.html')
-				except DoesNotExist:
-					flash("TRY AGAIN")
-					return redirect(url_for('login'))
-		
-		except DoesNotExist:
-			flash("Please Register Email")
-			return redirect(url_for('first'))
+			try:
+				print "kkdfsf"
+				if(registration.objects.get(email_db=email1,password_db=pass1)):
+
+
+					print "Sffsf"
+
+				# user = User()
+				# user.id = email1
+				# flask_login.login_user(user)
+					return render_template('common.html')
+				
+			
+			except DoesNotExist:
+				flash("Please Register Email")
+				return redirect(url_for('first'))
 
 
 
-	if not registration.objects(email_db=email1):
-		flash("email not registered please do the registration")
-
- 		return redirect(url_for('first'))
+	
 
 
 
-@app.route('/')
+@app.route('/add_item',methods=['GET','POST'])
+#@flask_login.login_required
+def add_item():
+		print "hey 0"
+		#current_email= flask.ext.login.current_user.id
+		if request.method=='GET':
+			return render_template('add_item.html')
+		else:
+			print "hey 1"
+			name11=request.form['pname']
+			image1=request.form['pimage']
+			price11=request.form['pprice']
+			size11=request.form['psize']
+			brand11=request.form['pbrand']
+			color11=request.form['pcolor']
+			print name11
+			#image11=request.form['Image']
+	
+			print "hey 2"#item=Bookmark_db.objects.get(name=name,price=price)
+			inputs=input_db(name=name11,image=image1,price=price11,brand=brand11,color=color11,size=size11).save()
+			print "hey 3"
+			print "hey 4"
+			list1=[]
+			for each in input_db.objects():
+				list1.append(each.to_mongo())
+			return render_template('common.html',l=list1)
+			#name=name11,price=price11,brand=brand11,color=color11,size=size11)
+			
 
 
 
@@ -142,5 +174,5 @@ def login():
 
 
 
-if __name__ == '__main__':
+if __name__=='__main__':
 	app.run(debug=True)

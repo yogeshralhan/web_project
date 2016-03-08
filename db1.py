@@ -22,10 +22,19 @@ class registration(Document):
 #     file_name=StringField(required=True)
 #     #time=DateTimeField(required='')
 
-# class Bookmark_db(Document):
-#     name=StringField(required=True)
-#     location=StringField(required=True)
-#     labels=StringField(required=True)
-#     notes=StringField(required=True)
-#     email=StringField(required=True)
+class input_db(Document):
+	# String newFileName = " ";
+	# File imageFile = new File("/users/victor/images/image.png");
+	# GridFS gfsPhoto = new GridFS(db, "photo");
+	# GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
+	# gfsFile.setFilename(newFileName);
+	# gfsFile.save();
+
+
+    name=StringField(required=True)
+    image=StringField(required=True)
+    price=StringField(required=True)
+    size=StringField(required=True)
+    brand=StringField(required=True)
+    color=StringField(required=True)
 

@@ -1,35 +1,19 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-
-
-	<title>user page</title>
+	<title></title>
 </head>
 <body>
-<h1><center><u><b>Products </h1>
-	
-
-  <!-- 
-  <li style="display:block;width:100%; clear:both;"> <h3>{{l[0].name}} </h3>
-  <img src = "/Static/random.jpg" style="width:304px;height:228px; float:left;"> 
-  <p>Price: Rs. {{l[0].price}} <br><br> Brand: {{l[0].brand}} <br><br> Color: {{l[0].color}}<br><br>Size:{{l[0].size}} <br><br>
-  <button type="button" name=b5 >Buy Product</button> </li>
-  <br>
-
 
 {% for i in range(0, l|length ) %}
   
   
   <li style="display:block;width:100%; clear:both;"> <h3>{{l[i].name}} </h3>
-  <img src = "/Static/random.jpg" style="width:304px;height:228px; float:left;"> 
+  <img src = "/Static/{{l[i].image}}" style="width:304px;height:228px; float:left;"> 
   <p>Price: Rs. {{l[i].price}} <br><br> Brand: {{l[i].brand}} <br><br> Color: {{l[i].color}}<br><br>Size:{{l[i].size}} <br><br>
   <button type="button" name="b5" >Buy Product</button> </li>
 {% endfor %}
-
-
-{{l}}
-   -->
+  
 
 <ol>
 
@@ -66,7 +50,6 @@
   
 
 </ol> 
-
 
 </body>
 </html>
