@@ -45,6 +45,16 @@ class User(flask_login.UserMixin):
 
 def first():
 	return render_template('first.html')
+
+@app.route('/out')
+
+def out():
+	return render_template('out.html')
+
+@app.route('/common')
+
+def common():
+	return render_template('common.html')
 	
 
 #Register New User Page
@@ -86,6 +96,36 @@ def register():
 
 
 
+
+
+
+@app.route('/buy',methods=['GET','POST'])
+
+def buy():
+	print "1"
+	if request.method=='GET':
+		return render_template('buy.html')
+	else:
+		quantity1=request.form['Quantity']
+		address1=request.form['Address']
+		contact1=request.form['Contact']
+
+		buy=purchase_db(quantity=quantity1,address=address1,contact=contact1).save()
+		
+		# n=input_db.objects.get(count=count1)
+		# m=purchase_db.objects.get(quantity=quantity1)
+
+		if(int(quantity1) > 5):
+			print "in1"
+			return redirect(url_for('out'))
+		else:	
+			print "in8"
+			v="Purchase Done"
+			return render_template('buy.html',v=v)
+
+
+			
+			
 
 
 #Login Existing User PAge
@@ -147,11 +187,12 @@ def add_item():
 			size11=request.form['psize']
 			brand11=request.form['pbrand']
 			color11=request.form['pcolor']
+			count1=request.form['pcount']
 			print name11
 			#image11=request.form['Image']
 	
 			print "hey 2"#item=Bookmark_db.objects.get(name=name,price=price)
-			inputs=input_db(name=name11,image=image1,price=price11,brand=brand11,color=color11,size=size11).save()
+			inputs=input_db(name=name11,image=image1,price=price11,brand=brand11,color=color11,size=size11,count=count1).save()
 			print "hey 3"
 			print "hey 4"
 			list1=[]

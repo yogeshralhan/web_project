@@ -37,4 +37,9 @@ class input_db(Document):
     size=StringField(required=True)
     brand=StringField(required=True)
     color=StringField(required=True)
+    count=StringField(required=True)
 
+class purchase_db(Document):
+	quantity=StringField(required=True)
+	address=StringField(required=True)
+	contact=StringField(required=True)
